@@ -1,6 +1,11 @@
 {
   "version": "2.0",
   "pipeline_stage": "validated",
+  "title": "Alljoined-1.6M",
+  "description": "Alljoined-1.6M is a large-scale EEG dataset comprising over 1.6 million trials of neural responses to rapid serial visual presentation (RSVP) of natural images from the THINGS database. Recorded from 20 healthy adult participants using a consumer-grade 32-channel EMOTIV FLEX2 system across four sessions each, the dataset was designed to evaluate whether deep neural network-based brain-computer interface and semantic decoding methods can be effectively conducted with affordable EEG hardware (~$2.2k) compared to research-grade systems. The dataset includes continuous EEG recordings at 256 Hz (resampled to 250 Hz), behavioral oddball detection responses, and comprehensive electrode position information.",
+  "methods_description": "EEG data were recorded using a 32-channel EMOTIV FLEX2 system with sintered Ag/AgCl gel-based electrodes in an extended 10-20 montage at 256 Hz sampling rate. Participants completed rapid serial visual presentation (RSVP) tasks with 100 ms image presentations followed by 100 ms blank intervals. An oddball detection task required button presses to catch trials featuring a Toy Story character (approximately 6% of sequences). Stimuli consisted of 16,740 unique images from the THINGS database, with test images presented 80 times per participant and training images presented 4-5 times. Data were recorded wirelessly via Bluetooth 5.2 with built-in 50/60 Hz notch filtering.",
+  "license": "CC-BY-NC-ND-4.0",
+  "dataset_type": "raw",
   "authors": {
     "Jonathan Xu": {},
     "Ugo Bruzadin Nunes": {},
@@ -11,6 +16,29 @@
     "Arnaud Delorme": {},
     "Reese Kneeland": {}
   },
+  "keywords": [
+    {
+      "term": "EEG"
+    },
+    {
+      "term": "brain-computer interfaces"
+    },
+    {
+      "term": "rapid serial visual presentation"
+    },
+    {
+      "term": "semantic decoding"
+    },
+    {
+      "term": "visual perception"
+    },
+    {
+      "term": "consumer-grade neuroimaging"
+    },
+    {
+      "term": "oddball detection"
+    }
+  ],
   "related_identifiers": [
     {
       "identifier": "10.48550/arXiv.2508.18571",
@@ -26,16 +54,18 @@
       "identifier": "https://nemar.org/dataexplorer/detail?dataset_id=nm000134",
       "identifier_type": "URL",
       "relation_type": "IsDescribedBy"
+    },
+    {
+      "identifier": "10.82901/nemar.nm000134",
+      "identifier_type": "DOI",
+      "relation_type": "IsVersionOf"
     }
   ],
-  "title": "Alljoined-1.6M",
-  "license": "CC-BY-NC-ND-4.0",
-  "dataset_type": "raw",
   "resource_type_general": "Dataset",
+  "resource_type_specific": "EEG Dataset",
   "modalities": [
     "eeg"
   ],
-  "resource_type_specific": "EEG Dataset",
   "sizes": [
     "7.7 GB (1526 files)"
   ],
@@ -48,30 +78,5 @@
     ".tsv",
     ".yml"
   ],
-  "description": "Alljoined-1.6M is a large-scale EEG dataset comprising over 1.6 million trials of neural responses to rapid serial visual presentation (RSVP) of natural images from the THINGS database. Recorded from 20 healthy adult participants using a consumer-grade 32-channel EMOTIV FLEX2 system across four sessions each, the dataset was designed to evaluate whether deep neural network-based brain-computer interface and semantic decoding methods can be effectively conducted with affordable EEG hardware (approximately $2.2k) compared to research-grade systems. The study combines high trial volume with an oddball detection task to maintain participant engagement while enabling systematic investigation of visual object processing at scale.",
-  "methods_description": "EEG data were recorded using a 32-channel EMOTIV FLEX2 system with sintered Ag/AgCl gel-based electrodes in an extended 10-20 montage at 256 Hz sampling rate (resampled to 250 Hz). The task paradigm employed rapid serial visual presentation with a 200 ms cycle (100 ms image + 100 ms blank screen) and an orthogonal oddball detection task (6% catch trials featuring Toy Story characters). Participants viewed 16,740 unique images from the THINGS database at 60 cm viewing distance. Each of 20 subjects completed 4 sessions with 19 runs per session (~5 minutes each), generating approximately 83,520 trials per subject. Behavioral performance on oddball detection averaged 88% AUC.",
-  "keywords": [
-    {
-      "term": "EEG"
-    },
-    {
-      "term": "brain-computer interfaces"
-    },
-    {
-      "term": "visual object recognition"
-    },
-    {
-      "term": "rapid serial visual presentation"
-    },
-    {
-      "term": "semantic decoding"
-    },
-    {
-      "term": "consumer-grade neuroimaging"
-    },
-    {
-      "term": "deep neural networks"
-    }
-  ],
-  "source_hash": "f085b9c3a112ee8d77807e2c70af3d85bdaf7306bdad3b8a956f8e809031d5dd"
+  "source_hash": "68cec7f0a4417469310e328a0b595ce64cce331e6e151369c6786a1c96eaa5c1"
 }
