@@ -1,1 +1,8 @@
 .nemar/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local download cache for the stimuli zip; the unpacked JPGs go through
+# git-annex (see .gitattributes) and end up on nemar-s3, not in git history.
+stimuli/_cache/
