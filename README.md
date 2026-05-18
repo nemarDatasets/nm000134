@@ -147,4 +147,4 @@ This dataset is distributed under CC-BY-NC-ND-4.0 (Creative Commons Attribution-
 
 Xu, J., Bruzadin Nunes, U., Jiang, W., Ryther, S., Pringle, J., Scotti, P. S., Delorme, A., & Kneeland, R. (2025). Alljoined-1.6M: A Million-Trial EEG-Image Dataset for Evaluating Affordable Brain-Computer Interfaces. https://doi.org/10.48550/arXiv.2508.18571
 
-Xu, J., Lee, S. K., & Jiang, W. (2024). Alljoined -- A dataset for EEG-to-Image decoding. https://doi.org/10.48550/arXiv.2404.05553
+Xu, J.*, Aristimunha, B.*, Feucht, M. E.*, Qian, E., Liu, C., Shahjahan, T., ... & Nestor, A. (2024). Alljoined--A dataset for EEG-to-Image decoding. Workshop Data Curation and Augmentation in Medical Imaging at 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 1–9. https://doi.org/10.48550/arXiv.2404.05553
