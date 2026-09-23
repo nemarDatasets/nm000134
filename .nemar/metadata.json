@@ -2,8 +2,8 @@
   "version": "2.0",
   "pipeline_stage": "enriched",
   "title": "Alljoined-1.6M",
-  "description": "Alljoined-1.6M is a large-scale EEG dataset capturing neural responses of 20 healthy adults to rapid serial visual presentation of natural images from the THINGS database, recorded using a consumer-grade 32-channel EMOTIV FLEX2 system across four sessions per participant. With over 1.6 million stimulus trials, the dataset aims to assess whether affordable EEG hardware can support deep learning-based brain-computer interface and semantic decoding research comparable to expensive research-grade systems. Its design mirrors the THINGS-EEG2 stimulus set to facilitate direct cross-dataset comparisons.",
-  "methods_description": "EEG was recorded with a 32-channel EMOTIV FLEX2 system (sintered Ag/AgCl gel electrodes, wireless Bluetooth 5.2) at 256 Hz, using an extended 10-20 montage focused on occipital/visual regions, with built-in dual 50/60 Hz notch filtering. Participants viewed images for 100 ms followed by 100 ms blank in an RSVP oddball paradigm, performing button-press detection of Woody character catch trials. Raw data were exported as EDF files, and converted to BIDS format using MNE-BIDS with channel renaming and metadata channel exclusion.",
+  "description": "Alljoined-1.6M is a large-scale EEG dataset capturing neural responses to rapid serial visual presentation of natural images from the THINGS database, recorded from 20 healthy adults using a consumer-grade 32-channel EMOTIV FLEX2 system across four sessions each. The dataset comprises over 1.6 million visual stimulus trials and was designed to evaluate whether affordable consumer-grade EEG hardware can support deep learning-based brain-computer interface and semantic decoding research, comparable to costly research-grade systems.",
+  "methods_description": "EEG was recorded with the EMOTIV FLEX2, a 32-channel wireless (Bluetooth 5.2) consumer-grade system with sintered Ag/AgCl gel electrodes in an extended 10-20 montage focused on occipital/visual regions, sampled at 256 Hz. Participants viewed rapid serial visual presentations of images (100 ms on, 100 ms blank) from the THINGS database while performing an oddball detection task (button press upon detecting a Woody character, ~6% of trials). Raw continuous data were stored as EDF files with 32 EEG channels retained after excluding EMOTIV metadata channels; BIDS conversion was performed using MNE-BIDS with validation via round-trip integrity checks.",
   "license": "CC-BY-NC-ND-4.0",
   "dataset_type": "raw",
   "authors": {
@@ -21,9 +21,7 @@
       "term": "EEG"
     },
     {
-      "term": "Brain-Computer Interfaces",
-      "subject_scheme": "MeSH",
-      "value_uri": "http://id.nlm.nih.gov/mesh/D062207"
+      "term": "brain-computer interface"
     },
     {
       "term": "rapid serial visual presentation"
@@ -34,28 +32,22 @@
       "value_uri": "http://id.nlm.nih.gov/mesh/D014796"
     },
     {
-      "term": "consumer-grade EEG"
+      "term": "consumer-grade hardware"
     },
     {
       "term": "THINGS database"
     },
     {
-      "term": "THINGS-EEG2"
-    },
-    {
-      "term": "RSVP oddball paradigm"
+      "term": "oddball detection task"
     },
     {
       "term": "EMOTIV FLEX2"
     },
     {
-      "term": "consumer EEG hardware"
+      "term": "RSVP"
     },
     {
-      "term": "oddball paradigm"
-    },
-    {
-      "term": "natural images"
+      "term": "semantic decoding"
     }
   ],
   "related_identifiers": [
