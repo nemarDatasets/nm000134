@@ -3,7 +3,8 @@
 NEMAR's conversion kept only behav/oddball rows in the training runs (05-19).
 The HuggingFace EDFs it was converted from still carry every marker; their
 onsets share the BIDS EDFs' time base, so the converter's rows are
-``onset = round(hf_onset * 256) / 256`` with ``value`` = 1-based row number.
+``onset = round(hf_onset * 256) / 256``, sorted by onset, with ``value`` the
+1-based id of each ``trial_type`` string in order of first appearance.
 
 Usage: python code/restore_stim_train_events.py <nm000134 clone> check|write <run globs...>
 """
@@ -49,14 +50,16 @@ def render(bids_events: Path) -> str:
     samples = np.rint(onsets * SFREQ).astype(int)
     order = np.argsort(samples, kind="stable")
     lines = ["onset\tduration\ttrial_type\tvalue\tsample"]
-    for value, i in enumerate(order, start=1):
+    ids: dict[str, int] = {}  # repeated marker strings share one id
+    for i in order:
+        value = ids.setdefault(descs[i], len(ids) + 1)
         lines.append(f"{samples[i] / SFREQ}\t0.0\t{descs[i]}\t{value}\t{samples[i]}")
-    return "﻿" + "\n".join(lines) + "\n"
+    return "\ufeff" + "\n".join(lines) + "\n"
 
 
 def rows(text: str) -> set[tuple[str, str, str]]:
     # (onset, trial_type, sample): `value` is a row number, so it shifts when rows are added
-    return {tuple(np.array(line.split("\t"))[[0, 2, 4]]) for line in text.lstrip("﻿").splitlines()[1:]}
+    return {tuple(np.array(line.split("\t"))[[0, 2, 4]]) for line in text.lstrip("\ufeff").splitlines()[1:]}
 
 
 def process(mode: str, bids_events: Path) -> str:
