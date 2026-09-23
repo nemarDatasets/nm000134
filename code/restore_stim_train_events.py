@@ -6,9 +6,12 @@ onsets share the BIDS EDFs' time base, so the converter's rows are
 ``onset = round(hf_onset * 256) / 256``, sorted by onset, with ``value`` the
 1-based id of each ``trial_type`` string in order of first appearance.
 
+Runs on the events files before code/add_stim_file.py appends stim_file.
+
 Usage: python code/restore_stim_train_events.py <nm000134 clone> check|write <run globs...>
 """
 
+import collections
 import concurrent.futures as cf
 import glob
 import re
@@ -57,9 +60,11 @@ def render(bids_events: Path) -> str:
     return "\ufeff" + "\n".join(lines) + "\n"
 
 
-def rows(text: str) -> set[tuple[str, str, str]]:
-    # (onset, trial_type, sample): `value` is a row number, so it shifts when rows are added
-    return {tuple(np.array(line.split("\t"))[[0, 2, 4]]) for line in text.lstrip("\ufeff").splitlines()[1:]}
+def rows(text: str) -> collections.Counter[tuple[str, ...]]:
+    # (onset, trial_type, sample), counted so a dropped duplicate row is caught;
+    # `value` is left out because it renumbers when rows are added
+    lines = text.lstrip("\ufeff").splitlines()[1:]
+    return collections.Counter(tuple(line.split("\t")[i] for i in (0, 2, 4)) for line in lines)
 
 
 def process(mode: str, bids_events: Path) -> str:
@@ -73,7 +78,7 @@ def process(mode: str, bids_events: Path) -> str:
         return f"ANCHOR MISMATCH {bids_events.name}: {sorted(missing)[:3]}"
     bids_events.write_text(new, encoding="utf-8")
     kinds = [line.split("\t")[2].split(",")[0] for line in new.splitlines()[1:]]
-    return f"written stim_train={kinds.count('stim_train')} kept={len(rows(old))}"
+    return f"written stim_train={kinds.count('stim_train')} kept={rows(old).total()}"
 
 
 if __name__ == "__main__":

@@ -79,9 +79,10 @@ def stim_files(events: Path, rows: list[list[str]]) -> list[str]:
     oddballs = [int(m[1]) for m in markers if m[0] == "oddball"]
     targets = oddballs
     if not set(oddballs) <= TARGETS:
-        subject, session, block = re.search(
-            r"sub-(\d+)_ses-(\d+)_task-images_run-(\d+)", events.name
-        ).groups()
+        match = re.search(r"sub-(\d+)_ses-(\d+)_task-images_run-(\d+)", events.name)
+        # the design order only covers ses-01..04, not e.g. sub-08 ses-02old
+        assert match, f"{events.name}: placeholder oddball ids, no design order"
+        subject, session, block = match.groups()
         design = design_oddballs(subject, int(session), int(block))
         assert len(design) >= len(oddballs), (events.name, oddballs, design)
         targets = design[: len(oddballs)]
