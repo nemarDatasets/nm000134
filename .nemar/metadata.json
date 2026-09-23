@@ -1,9 +1,9 @@
 {
   "version": "2.0",
-  "pipeline_stage": "validated",
+  "pipeline_stage": "enriched",
   "title": "Alljoined-1.6M",
-  "description": "Alljoined-1.6M is a large-scale EEG dataset comprising over 1.6 million trials of neural responses to rapid serial visual presentation (RSVP) of natural images from the THINGS database. Recorded from 20 healthy adult participants using a consumer-grade 32-channel EMOTIV FLEX2 system across four sessions each, the dataset was designed to evaluate whether deep neural network-based brain-computer interface and semantic decoding methods can be effectively conducted with affordable EEG hardware (~$2.2k) compared to research-grade systems. The dataset includes continuous EEG recordings at 256 Hz (resampled to 250 Hz), behavioral oddball detection responses, and comprehensive electrode position information.",
-  "methods_description": "EEG data were recorded using a 32-channel EMOTIV FLEX2 system with sintered Ag/AgCl gel-based electrodes in an extended 10-20 montage at 256 Hz sampling rate. Participants completed rapid serial visual presentation (RSVP) tasks with 100 ms image presentations followed by 100 ms blank intervals. An oddball detection task required button presses to catch trials featuring a Toy Story character (approximately 6% of sequences). Stimuli consisted of 16,740 unique images from the THINGS database, with test images presented 80 times per participant and training images presented 4-5 times. Data were recorded wirelessly via Bluetooth 5.2 with built-in 50/60 Hz notch filtering.",
+  "description": "Alljoined-1.6M is a large-scale EEG dataset capturing neural responses of 20 healthy adults to rapid serial visual presentation of natural images from the THINGS database, recorded using a consumer-grade 32-channel EMOTIV FLEX2 system across four sessions per participant. With over 1.6 million stimulus trials, the dataset aims to assess whether affordable EEG hardware can support deep learning-based brain-computer interface and semantic decoding research comparable to expensive research-grade systems. Its design mirrors the THINGS-EEG2 stimulus set to facilitate direct cross-dataset comparisons.",
+  "methods_description": "EEG was recorded with a 32-channel EMOTIV FLEX2 system (sintered Ag/AgCl gel electrodes, wireless Bluetooth 5.2) at 256 Hz, using an extended 10-20 montage focused on occipital/visual regions, with built-in dual 50/60 Hz notch filtering. Participants viewed images for 100 ms followed by 100 ms blank in an RSVP oddball paradigm, performing button-press detection of Woody character catch trials. Raw data were exported as EDF files, and converted to BIDS format using MNE-BIDS with channel renaming and metadata channel exclusion.",
   "license": "CC-BY-NC-ND-4.0",
   "dataset_type": "raw",
   "authors": {
@@ -21,29 +21,48 @@
       "term": "EEG"
     },
     {
-      "term": "brain-computer interfaces"
+      "term": "Brain-Computer Interfaces",
+      "subject_scheme": "MeSH",
+      "value_uri": "http://id.nlm.nih.gov/mesh/D062207"
     },
     {
       "term": "rapid serial visual presentation"
     },
     {
-      "term": "semantic decoding"
+      "term": "Visual Perception",
+      "subject_scheme": "MeSH",
+      "value_uri": "http://id.nlm.nih.gov/mesh/D014796"
     },
     {
-      "term": "visual perception"
+      "term": "consumer-grade EEG"
     },
     {
-      "term": "consumer-grade neuroimaging"
+      "term": "THINGS database"
     },
     {
-      "term": "oddball detection"
+      "term": "THINGS-EEG2"
+    },
+    {
+      "term": "RSVP oddball paradigm"
+    },
+    {
+      "term": "EMOTIV FLEX2"
+    },
+    {
+      "term": "consumer EEG hardware"
+    },
+    {
+      "term": "oddball paradigm"
+    },
+    {
+      "term": "natural images"
     }
   ],
   "related_identifiers": [
     {
       "identifier": "10.48550/arXiv.2508.18571",
       "identifier_type": "DOI",
-      "relation_type": "References"
+      "relation_type": "IsDescribedBy"
     },
     {
       "identifier": "https://github.com/nemarDatasets/nm000134",
@@ -51,14 +70,14 @@
       "relation_type": "IsDescribedBy"
     },
     {
-      "identifier": "https://nemar.org/dataexplorer/detail?dataset_id=nm000134",
-      "identifier_type": "URL",
-      "relation_type": "IsDescribedBy"
-    },
-    {
       "identifier": "10.82901/nemar.nm000134",
       "identifier_type": "DOI",
       "relation_type": "IsVersionOf"
+    },
+    {
+      "identifier": "https://nemar.org/dataset/nm000134",
+      "identifier_type": "URL",
+      "relation_type": "IsDescribedBy"
     }
   ],
   "resource_type_general": "Dataset",
@@ -67,16 +86,17 @@
     "eeg"
   ],
   "sizes": [
-    "7.7 GB (1526 files)"
+    "7.75 GB (18275 files)"
   ],
   "formats": [
     ".DS_Store",
     ".edf",
+    ".jpg",
     ".json",
     ".md",
     ".py",
     ".tsv",
     ".yml"
   ],
-  "source_hash": "68cec7f0a4417469310e328a0b595ce64cce331e6e151369c6786a1c96eaa5c1"
+  "source_hash": "cca2961c6cd30da33fc25cafc4132fb24dbc1573581d521d70afc52bf2e5555d"
 }
