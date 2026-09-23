@@ -6,7 +6,8 @@ in a TSV cell; mne_bids 0.19, for one, rewrites its '-1,<index>' tail as a
 decimal. This script writes:
 
 - ``trial_type``: the label (stim_train, stim_test, oddball, behav, debug);
-- ``value``: the marker value (image id, or response code for behav);
+- ``value``: the marker value as an integer (image id, or response code for
+  behav); some sessions zero-padded it, which ``int()`` drops;
 - ``marker_index``: the marker's index in the presentation software's stream;
 - ``stim_file``: the image shown, relative to ``stimuli/``. In seven sessions
   every oddball marker carries a placeholder value (0 or 16539, both training
@@ -35,7 +36,8 @@ EVENTS_JSON = {
     "trial_type": {
         "Description": (
             "Marker label written by the presentation software. The original "
-            "marker string is '<trial_type>,<value>,-1,<marker_index>'."
+            "marker string is '<trial_type>,<value>,-1,<marker_index>', with the "
+            "value zero-padded in the sessions listed under value."
         ),
         "Levels": {
             "stim_train": "Training image presentation.",
@@ -50,14 +52,16 @@ EVENTS_JSON = {
     },
     "value": {
         "Description": (
-            "Marker value as written (zero-padded in some sessions): the image "
-            "id for stim_train, stim_test and oddball; "
+            "Marker value: the image id for stim_train, stim_test and oddball; "
             "the response code for behav, which code/generate_behav.py scores as "
             "correct for 0 and 3, incorrect for 1 and 2, and no response for 4 "
             "and 5; always 1 for debug. Oddball values are placeholders (0 or "
             "16539) in sub-02 ses-02, sub-04 ses-04, sub-05 ses-04, sub-06 ses-02, "
             "sub-06 ses-03, sub-06 ses-04 and sub-09 ses-02; stim_file holds the "
-            "image shown."
+            "image shown. The original marker strings zero-padded stim_train values "
+            "to five digits in sub-07 ses-04, sub-08 ses-02, sub-08 ses-02old, "
+            "sub-08 ses-04, sub-11 ses-03, sub-11 ses-04, sub-15 ses-03, "
+            "sub-15 ses-04, sub-17 ses-02, sub-17 ses-04 and sub-18 ses-03."
         )
     },
     "marker_index": {
@@ -121,10 +125,9 @@ def tidy(events: Path) -> None:
     markers = []
     for row in rows:
         label, value, flag, index = row[2].split(",")
-        # kept as written (some sessions zero-pad the value) so the original
-        # string rebuilds exactly
         assert flag == "-1" and value.isdigit() and index.isdigit(), (events.name, row[2])
-        markers.append((label, value, index))
+        # int() drops the zero-padding some sessions wrote, so one image has one value
+        markers.append((label, str(int(value)), index))
     out = [HEADER]
     for (onset, duration, _, _, sample), (label, value, index), stim_file in zip(
         rows, markers, stim_files(events, markers)
