@@ -6,7 +6,7 @@ onsets share the BIDS EDFs' time base, so the converter's rows are
 ``onset = round(hf_onset * 256) / 256``, sorted by onset, with ``value`` the
 1-based id of each ``trial_type`` string in order of first appearance.
 
-Runs on the events files before code/add_stim_file.py appends stim_file.
+Runs on the events files before code/tidy_events.py splits the markers.
 
 Usage: python code/restore_stim_train_events.py <nm000134 clone> check|write <run globs...>
 """

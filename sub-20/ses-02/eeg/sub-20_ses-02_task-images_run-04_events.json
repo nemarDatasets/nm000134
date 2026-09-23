@@ -11,12 +11,22 @@
         "Description": "The event onset time in number of sampling points.First sample is 0."
     },
     "value": {
-        "Description": "1-based id of the trial_type string, numbered in order of first appearance (the row number unless a marker string repeats, as in sub-20 ses-01); the recordings carry no trigger codes."
+        "Description": "Marker value as written (zero-padded in some sessions): the image id for stim_train, stim_test and oddball; the response code for behav, which code/generate_behav.py scores as correct for 0 and 3, incorrect for 1 and 2, and no response for 4 and 5; always 1 for debug. Oddball values are placeholders (0 or 16539) in sub-02 ses-02, sub-04 ses-04, sub-05 ses-04, sub-06 ses-02, sub-06 ses-03, sub-06 ses-04 and sub-09 ses-02; stim_file holds the image shown."
     },
     "trial_type": {
-        "Description": "Marker written by the presentation software, as '<label>,<image id>,-1,<marker index>'. label is stim_train or stim_test (image presentation), oddball (target image of the attention task) or behav (participant response; the second field is a response code, which code/generate_behav.py scores as correct for 0 and 3, incorrect for 1 and 2, and no response for 4 and 5); a few training runs also hold debug markers (second field always 1), a presentation-software marker that is not a stimulus. Oddball image ids are placeholders (0 or 16539) in sub-02 ses-02, sub-04 ses-04, sub-05 ses-04, sub-06 ses-02, sub-06 ses-03, sub-06 ses-04 and sub-09 ses-02; stim_file holds the image shown."
+        "Description": "Marker label written by the presentation software. The original marker string is '<trial_type>,<value>,-1,<marker_index>'.",
+        "Levels": {
+            "stim_train": "Training image presentation.",
+            "stim_test": "Test image presentation.",
+            "oddball": "Target image of the attention task.",
+            "behav": "Participant response.",
+            "debug": "Presentation-software marker found in a few training runs; not a stimulus."
+        }
+    },
+    "marker_index": {
+        "Description": "Index of the marker in the presentation software's marker stream (the last field of the original marker string)."
     },
     "stim_file": {
-        "Description": "Image shown at this onset, relative to stimuli/; n/a for behav and debug rows. For oddball rows with a placeholder id it is the target image at the same position in the authors' design order."
+        "Description": "Image shown at this onset, relative to stimuli/; n/a for behav and debug rows. For oddball rows with a placeholder value it is the target image at the same position in the authors' design order."
     }
 }
